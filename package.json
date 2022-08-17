@@ -2,7 +2,6 @@
   "name": "terraform-backend-cloudflare-worker",
   "version": "1.0.0",
   "description": "terraform remote state using a cloudflare worker",
-  "main": "index.js",
   "scripts": {
     "deploy": "wrangler publish",
     "start": "wrangler dev",
