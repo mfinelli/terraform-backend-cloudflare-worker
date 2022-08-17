@@ -1,6 +1,6 @@
 import { Hono } from 'hono'
 
-export interface Env {
+interface Env {
   // Example binding to KV. Learn more at https://developers.cloudflare.com/workers/runtime-apis/kv/
   // MY_KV_NAMESPACE: KVNamespace;
   //
@@ -11,7 +11,7 @@ export interface Env {
   // MY_BUCKET: R2Bucket;
 }
 
-const app = new Hono()
+const app = new Hono<Env>()
 
 app.get('/', (c) => c.text('Hello, World!'))
 
