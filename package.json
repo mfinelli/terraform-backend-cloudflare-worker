@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/mfinelli/terraform-backend-cloudflare-worker#readme",
   "dependencies": {
+    "@honojs/sentry": "github:honojs/sentry",
     "hono": "^2.0.8"
   },
   "devDependencies": {

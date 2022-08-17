@@ -1,4 +1,5 @@
 import { Hono } from 'hono'
+import { sentry } from '@honojs/sentry'
 
 interface Env {
   // Example binding to KV. Learn more at https://developers.cloudflare.com/workers/runtime-apis/kv/
@@ -9,9 +10,12 @@ interface Env {
   //
   // Example binding to R2. Learn more at https://developers.cloudflare.com/workers/runtime-apis/r2/
   // MY_BUCKET: R2Bucket;
+  SENTRY_DSN: string
 }
 
 const app = new Hono<Env>()
+
+app.use('*', sentry())
 
 app.get('/', (c) => c.text('Hello, World!'))
 
