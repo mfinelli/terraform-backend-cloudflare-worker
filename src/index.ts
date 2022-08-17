@@ -1,5 +1,5 @@
 import { Hono } from 'hono'
-import { sentry } from '@honojs/sentry'
+// import { sentry } from '@honojs/sentry'
 
 interface Env {
   // Example binding to KV. Learn more at https://developers.cloudflare.com/workers/runtime-apis/kv/
@@ -15,8 +15,14 @@ interface Env {
 
 const app = new Hono<Env>()
 
-app.use('*', sentry())
+// app.use('*', sentry())
 
-app.get('/', (c) => c.text('Hello, World!'))
+app.use('*', async (c, next) => {
+  await next()
+  // we never want cached responses for terraform state
+  // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control
+  c.header('Cache-Control', 'no-store')
+})
+
 
 export default app
