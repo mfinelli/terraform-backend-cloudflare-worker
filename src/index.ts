@@ -31,5 +31,23 @@ app.use('*', async (c, next) => {
   c.header('Cache-Control', 'no-store')
 })
 
+app.get('/:name', async (c) => {
+  const stateName = c.req.param('name')
+  const state = await c.env.TERRAFORM_STATE.get(stateName)
+  // return c.json(state)
+  if (state) {
+    return c.json(JSON.parse(state))
+  } else {
+    return c.text(null)
+  }
+})
+
+app.post('/:name', async (c) => {
+  const stateName = c.req.param('name')
+  const body = await c.req.parseBody()
+  console.log(body)
+  await c.env.TERRAFORM_STATE.put(stateName, JSON.stringify(body))
+  return c.json(body)
+})
 
 export default app
