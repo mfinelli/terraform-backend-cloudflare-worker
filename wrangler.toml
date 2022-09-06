@@ -1,12 +1,12 @@
 name = "terraform-state"
 main = "src/index.ts"
 compatibility_date = "2022-08-17"
-
-# kv_namespaces = [
-#   { binding = "terraform-state", id = "13fa3ca4a8a54e0aadfc1ee1d65e0ef7", preview_id = '60e994add4664598a89a0d7e059cbba1' },
-# ]
+workers_dev = true
 
 [[kv_namespaces]]
 binding = "TERRAFORM_STATE"
 id = "13fa3ca4a8a54e0aadfc1ee1d65e0ef7"
 preview_id = "60e994add4664598a89a0d7e059cbba1"
+
+[miniflare]
+kv_persist = true

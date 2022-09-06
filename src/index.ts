@@ -1,13 +1,16 @@
 import { Hono } from 'hono'
 import Toucan from 'toucan-js'
 // import { sentry } from '@honojs/sentry'
+//
 
-interface Env {
-  TERRAFORM_STATE: KVNamespace
-  SENTRY_DSN: string
-}
+import { Bindings } from './bindings'
 
-const app = new Hono<Env>()
+// export interface Env {
+//   TERRAFORM_STATE: KVNamespace
+//   SENTRY_DSN: string
+// }
+
+const app = new Hono<{ Bindings: Bindings }>()
 
 // app.use('*', sentry())
 
@@ -34,18 +37,16 @@ app.use('*', async (c, next) => {
 app.get('/:name', async (c) => {
   const stateName = c.req.param('name')
   const state = await c.env.TERRAFORM_STATE.get(stateName)
-  // return c.json(state)
   if (state) {
     return c.json(JSON.parse(state))
   } else {
-    return c.text(null)
+    return c.text('')
   }
 })
 
 app.post('/:name', async (c) => {
   const stateName = c.req.param('name')
   const body = await c.req.parseBody()
-  console.log(body)
   await c.env.TERRAFORM_STATE.put(stateName, JSON.stringify(body))
   return c.json(body)
 })

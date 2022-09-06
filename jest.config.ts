@@ -5,4 +5,7 @@ export default {
   coverageProvider: "v8",
   preset: 'ts-jest',
   testEnvironment: "miniflare",
+  // testEnvironmentOptions: {
+  //   bindings: { SENTRY_DSN: "" },
+  // },
 };
