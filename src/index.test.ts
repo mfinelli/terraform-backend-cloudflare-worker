@@ -8,6 +8,7 @@ const env = getMiniflareBindings()
 // const { SENTRY_DSN, TERRAFORM_STATE } = getMiniflareBindings()
 // const SENTRY_DSN = ''
 // const TERRAFORM_STATE = new KVNamespace(new MemoryStorage());
+// const TERRAFORM_STATE_LOCKS = new KVNamespace(new MemoryStorage());
 
 describe('test root route', () => {
   it('it should return a 404', async () => {
@@ -27,6 +28,7 @@ describe('test getting state', () => {
       // app.Env = {
       //   SENTRY_DSN: SENTRY_DSN,
       //   TERRAFORM_STATE: TERRAFORM_STATE,
+      //   TERRAFORM_STATE_LOCKS: TERRAFORM_STATE_LOCKS,
       // }
       // app.env.SENTRY_DSN = SENTRY_DSN
       // console.log(Object.getOwnPropertyNames(app));

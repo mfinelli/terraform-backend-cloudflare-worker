@@ -8,5 +8,10 @@ binding = "TERRAFORM_STATE"
 id = "13fa3ca4a8a54e0aadfc1ee1d65e0ef7"
 preview_id = "60e994add4664598a89a0d7e059cbba1"
 
+[[kv_namespaces]]
+binding = "TERRAFORM_STATE_LOCKS"
+id = "df62321dc9f1425481c8d6cef989edb8"
+preview_id = "8b39217f93ad44719b48a17f44051e2b"
+
 [miniflare]
 kv_persist = true
